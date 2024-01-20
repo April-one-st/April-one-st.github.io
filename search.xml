@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>butterfly 魔改教程（1）</title>
+    <url>/2024/01/20/hexo-butterfly-style1/</url>
+    <content><![CDATA[<!-- @format -->
+
+<p>记录一些博客搭建过程中的魔改教程。</p>
+<h2 id="首页背景图替换为视频"><a href="#首页背景图替换为视频" class="headerlink" title="首页背景图替换为视频"></a>首页背景图替换为视频</h2><ol>
+<li><p>找到文件 themes\butterfly\layout\includes\header\index.pug</p>
+</li>
+<li><p>添加代码（注意锁进）</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 有两个 else if is_home(), 在第一个的里面直接添加就好 --&gt;</span><br><span class="line">else if is_home()</span><br><span class="line">    if page.index_video ? page.index_video : theme.index_video</span><br><span class="line">    video#index-video.videosy(autoplay=&#x27;&#x27; loop=&#x27;&#x27; muted=&#x27;&#x27; __idm_id__=&#x27;196610&#x27; style=&#x27;object-fit:fill;width:100%;height:100%;&#x27;)</span><br><span class="line">        source(src=theme.index_video)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加主题配置文件 _config.butterfly.yml</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注意将 index_img 设置为false</span></span><br><span class="line"><span class="comment"># The banner image of home page</span></span><br><span class="line"><span class="attr">index_img:</span> <span class="literal">false</span> <span class="comment"># 下面添加</span></span><br><span class="line"><span class="attr">index_video:</span> <span class="string">&quot;your void url&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="屏幕樱花效果"><a href="#屏幕樱花效果" class="headerlink" title="屏幕樱花效果"></a>屏幕樱花效果</h2><ol>
+<li>_config.yml 文件配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="comment"># - &lt;link rel=&quot;stylesheet&quot; href=&quot;/xxx.css&quot;&gt;</span></span><br><span class="line">  <span class="attr">bottom:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">src=&quot;https://cnhkbbs.github.io/staticcdn/hexo/sakura.js&quot;&gt;&lt;/script&gt;</span> <span class="comment"># 樱花动效</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="增加搜索功能"><a href="#增加搜索功能" class="headerlink" title="增加搜索功能"></a>增加搜索功能</h2><ol>
+<li>安装插件</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-generator-search --save</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>_config.yml 中添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>修改 _config.butterfly.yml 配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">CDN:</span></span><br><span class="line"><span class="comment"># 修改完后从新启动项目即可</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="导航栏魔改"><a href="#导航栏魔改" class="headerlink" title="导航栏魔改"></a>导航栏魔改</h2><h3 id="搜索按钮右移"><a href="#搜索按钮右移" class="headerlink" title="搜索按钮右移"></a>搜索按钮右移</h3><ol>
+<li>修改 butterfly 主题的 themes&#x2F;butterfly&#x2F;layout&#x2F;includes&#x2F;header&#x2F;nav.pug 文件</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//- +表示新增代码 - 表示减少代码</span><br><span class="line">//- 注意代码缩进</span><br><span class="line">nav#nav</span><br><span class="line">  span#blog_name</span><br><span class="line">    a#site-name(href=url_for(&#x27;/&#x27;)) #[=config.title]</span><br><span class="line"></span><br><span class="line">  #menus</span><br><span class="line">+  !=partial(&#x27;includes/header/menu_item&#x27;, &#123;&#125;, &#123;cache: true&#125;)</span><br><span class="line">+  #nav-right</span><br><span class="line">    if (theme.algolia_search.enable || theme.local_search.enable)</span><br><span class="line">      #search-button</span><br><span class="line">        a.site-page.social-icon.search</span><br><span class="line">          i.fas.fa-search.fa-fw</span><br><span class="line">+          //- span=&#x27; &#x27;+_p(&#x27;search.title&#x27;)</span><br><span class="line">-    !=partial(&#x27;includes/header/menu_item&#x27;, &#123;&#125;, &#123;cache: true&#125;)</span><br><span class="line"></span><br><span class="line">    #toggle-menu</span><br><span class="line">      a.site-page</span><br><span class="line">        i.fas.fa-bars.fa-fw</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>自定义 css 文件，并引入</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#nav-right</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> auto;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-end;</span><br><span class="line">  <span class="attribute">margin-left</span>: auto;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="鼠标移入放大效果"><a href="#鼠标移入放大效果" class="headerlink" title="鼠标移入放大效果"></a>鼠标移入放大效果</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 同样是自定义css文件引入主题 */</span></span><br><span class="line"><span class="comment">/* 去除导航栏选项中底下的蓝条 */</span></span><br><span class="line"><span class="selector-id">#nav</span> *<span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: transparent <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 导航栏菜单鼠标移入字体放大 */</span></span><br><span class="line"><span class="selector-id">#nav</span> <span class="selector-id">#site-name</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-id">#nav</span> <span class="selector-class">.menus_item</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-id">#nav</span> <span class="selector-id">#search-button</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">28px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>博客搭建</title>
+    <url>/2024/01/20/hexo-init/</url>
+    <content><![CDATA[<!-- @format -->
+
+<p>记录下博客搭建过程，本站采用 <a href="https://hexo.io/zh-cn/index.html">hexo</a> + <a href="https://butterfly.js.org/">butterfly</a> 搭建完成。</p>
+<h2 id="hexo-建站"><a href="#hexo-建站" class="headerlink" title="hexo 建站"></a>hexo 建站</h2><ol>
+<li>安装 hexo</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>初始化 hexo</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>安装依赖</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>项目编译</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line"><span class="comment"># 简写</span></span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>运行项目</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line"><span class="comment"># 简写</span></span><br><span class="line">$ hexo s</span><br><span class="line"><span class="comment"># 运行之后在本地浏览器访问 http://localhost:4000/ 即可预览</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="推送至-github"><a href="#推送至-github" class="headerlink" title="推送至 github"></a>推送至 github</h2><ol>
+<li>创建 sshkey</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;your_email&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>查看 sshkey</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /Users/电脑用户名/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>3.复制 sshkey，进入 github 绑定 sshkey</p>
+<ol start="4">
+<li>安装插件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>运行指令</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 编译</span></span><br><span class="line">$ hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送</span></span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<h2 id="主题应用"><a href="#主题应用" class="headerlink" title="主题应用"></a>主题应用</h2><ol>
+<li>安装主题</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># hexo 项目根目录终端运行</span></span><br><span class="line">$ git <span class="built_in">clone</span> -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>修改根目录下 <font color=#91b859>_config.yml</font> 文件，将主题修改为 butterfly</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">$</span> <span class="attr">theme:</span> <span class="string">butterfly</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>安装插件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># hexo 项目根目录终端运行</span></span><br><span class="line">$ npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>在 hexo 根目录下创建 <font color=#91b859>_config.butterfly.yml</font> 文件</p>
+</li>
+<li><p>将主题目录的 <font color=#91b859>_config.yml</font> 内容复制到 <font color=#91b859>_config.butterfly.yml</font> 里面去。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>hexo源码 推送至 github</title>
+    <url>/2024/01/20/hexo-to-github/</url>
+    <content><![CDATA[<!-- @format -->
+
+<p>可以将 hexo 的源码推送至 github，方便更换设备时直接拉取代码。</p>
+<ol>
+<li><p>去 github 上在博客的项目里新建一个分支 <font color=#91b859> hexo </font> ，并将其设置为默认分支。</p>
+</li>
+<li><p>在本地新建一个文件夹，并将 hexo 分支的代码 clone 下来</p>
+</li>
+<li><p>打开新建的文件夹，查看隐藏文件，删除掉除 <font color=#91b859> .git </font> 之外的所有文件</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mac隐藏文件查看方式,重复操作可隐藏</span></span><br><span class="line">$ Command + Shift + .</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>终端进入 hexo 下面，依次执行</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">&quot;feat: init&quot;</span></span><br><span class="line">$ git push origin hexo</span><br><span class="line"><span class="comment"># 此时再次进入 github 查看 hexo 分支的代码，发现已经是空的了</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>将 .git 文件复制到 blog 项目的根目录下，并删除掉 <font color=#91b859> themes </font> 文件夹下的 <font color=#91b859> .git </font> 和 <font color=#91b859> .gitignore </font> 文件（包括各个主题下的也要删除，否则主题的代码推不上去）。</p>
+</li>
+<li><p>终端进入博客根目录，依次执行</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">&quot;feat: init&quot;</span></span><br><span class="line">$ git push origin hexo</span><br></pre></td></tr></table></figure>
+
+<p>到这就已经可以了，后续可以将 github 上 hexo 分支的代码 clone 下来继续编写博客了。使用 git 管理代码，hexo 发布博客。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
+</search>
