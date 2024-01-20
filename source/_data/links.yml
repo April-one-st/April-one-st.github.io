@@ -1,0 +1,9 @@
+# @format
+- name: Hexo
+  url: https://hexo.io/zh-tw/
+  image: https://hexo.io/logo.svg
+  desc: 快速、簡單且強大的網誌框架
+- name: Hexo-Theme-Async
+  url: https://hexo-theme-async.imalun.com/
+  image: https://hexo-theme-async.imalun.com/logo.svg
+  desc: 简洁、优雅、轻量、美观的用户界面。
