@@ -16,3 +16,41 @@
       url: https://hexo-theme-async.imalun.com/
       image: https://hexo-theme-async.imalun.com/logo.svg
       desc: 简洁、优雅、轻量、美观的用户界面。
+
+- title: 前端框架
+  values:
+    - name: React
+      url: https://zh-hans.react.dev/
+      image: https://reactnative.dev/img/header_logo.svg
+      desc: 快速、簡單且強大的網誌框架
+    - name: Vue
+      url: https://cn.vuejs.org/
+      image: https://v2.cn.vuejs.org/images/logo.svg
+      desc: 易学易用，性能出色，适用场景丰富的 Web 前端框架。
+    - name: Node.js
+      url: https://nodejs.org/en
+      image: https://nodejs.org/static/images/logo.svg
+      desc: Node.js® is an open-source, cross-platform JavaScript runtime environment.
+
+- title: UI库
+  values:
+    - name: Element
+      url: https://element.eleme.cn/#/zh-CN
+      image: https://seeklogo.com/images/E/element-ui-logo-A640D7E503-seeklogo.com.png
+      desc: Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库
+    - name: Element Plus
+      url: https://element-plus.org/zh-CN/
+      image: https://seeklogo.com/images/E/element-ui-logo-A640D7E503-seeklogo.com.png
+      desc: 基于 Vue 3，面向设计师和开发者的组件库
+    - name: Ant Design
+      url: https://ant-design.antgroup.com/index-cn
+      image: https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg
+      desc: 助力设计开发者「更灵活」地搭建出「更美」的产品，让用户「快乐工作」～
+    - name: Swiper
+      url: https://www.swiper.com.cn/
+      image: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8hrGYH8IlZO0IbjXL6yvBmnyp33XdSPe7946j1VBx5Q&s
+      desc: 开源、免费、强大的触摸滑动插件
+    - name: ECharts
+      url: https://echarts.apache.org/zh/index.html
+      image: https://echarts.apache.org/en/images/echarts-footer-logo.png
+      desc: 一个基于 JavaScript 的开源可视化图表库
