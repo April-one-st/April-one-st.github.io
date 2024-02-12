@@ -1,5 +1,5 @@
 ---
-title: butterfly 魔改教程（1）
+title: butterfly 魔改教程
 categories: blog
 cover: /img/03.png
 keywords: blog hexo
@@ -12,6 +12,8 @@ banner:
 <!-- @format -->
 
 记录一些博客搭建过程中的魔改教程。
+`由于本站已更新主题为Hexo-Theme-Async，故本篇文章将停止更新，谢谢！`
+`如需魔改butterfly，可参考好友`[Nanami Kento](https://wutiaowu5t5.github.io/)
 
 ## 首页背景图替换为视频
 

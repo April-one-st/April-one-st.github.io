@@ -1,11 +1,11 @@
 ---
 title: Markdown 语法学习 （基本语法）
 categories: Markdown
-cover:
+cover: /img/04.png
 keywords: Markdown Study
 banner:
   type: img
-  bgurl:
+  bgurl: /img/04.png
   bannerText:
 ---
 
@@ -17,14 +17,14 @@ banner:
 
 创建标题，可以在 title 前面添加 #。 #的数量代表了标题的级别
 
-| Markdown 语法  | 预览效果                          | HTML 语法｜        |
-| -------------- | --------------------------------- | ------------------ |
-| # level 1      | <h1>level 1</h1>                  | \<h1>level 1\</h1> |
-| ## level 2     | <h2 class="test-h2"> level 2</h2> | \<h2>level 2\</h2> |
-| ### level 3    | <h3> level 3</h3>                 | \<h3>level 3\</h3> |
-| #### level 4   | <h4 class="test-h4"> level 4</h4> | \<h4>level 4\</h4> |
-| ##### level 5  | <h5 class="test-h5"> level 5</h5> | \<h5>level 5\</h5> |
-| ###### level 6 | <h6 class="test-h6"> level 6</h6> | \<h6>level 6\</h6> |
+| Markdown 语法        | 预览效果                                           | HTML 语法｜        |
+| -------------------- | -------------------------------------------------- | ------------------ |
+| \# level 1           | <span class='prive-h1 prive-title'>level 1</span>  | \<h1>level 1\</h1> |
+| \#\# level 2         | <span class='prive-h2 prive-title'> level 2</span> | \<h2>level 2\</h2> |
+| \#\#\# level 3       | <span class='prive-h3 prive-title'> level 3</span> | \<h3>level 3\</h3> |
+| \#\#\#\# level 4     | <h4 class="test-h4"> level 4</h4>                  | \<h4>level 4\</h4> |
+| \#\#\#\#\# level 5   | <h5 class="test-h5"> level 5</h5>                  | \<h5>level 5\</h5> |
+| \#\#\#\#\#\# level 6 | <h6 class="test-h6"> level 6</h6>                  | \<h6>level 6\</h6> |
 
 ## 段落
 

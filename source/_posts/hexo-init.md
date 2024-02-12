@@ -11,7 +11,7 @@ banner:
 
 <!-- @format -->
 
-记录下博客搭建过程，本站采用 [hexo](https://hexo.io/zh-cn/index.html) + [butterfly](https://butterfly.js.org/) 搭建完成。
+记录下博客搭建过程，本站采用 [hexo](https://hexo.io/zh-cn/index.html) + [Hexo-Theme-Async](https://hexo-theme-async.imalun.com/) 搭建完成。
 
 ## hexo 建站
 
@@ -84,26 +84,26 @@ $ hexo d
 
 ## 主题应用
 
-1. 安装主题
+`请确保已经安装渲染器： hexo-renderer-ejs 和 hexo-renderer-less。`
 
 ```bash
-# hexo 项目根目录终端运行
-$ git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
+$ npm install --save hexo-renderer-less hexo-renderer-ejs
 ```
 
-2. 修改根目录下 <font color=#91b859>\_config.yml</font> 文件，将主题修改为 butterfly
+1. 安装[主题](https://hexo-theme-async.imalun.com/)
+
+```bash
+$ npm i hexo-theme-async@latest
+```
+
+2. 启用主题
+
+   修改根目录下 <font color=#91b859>\_config.yml</font> 文件，将主题修改为 async
 
 ```yml
-$ theme: butterfly
+$ theme: async
 ```
 
-3. 安装插件
+3. 配置主题 Config
 
-```bash
-# hexo 项目根目录终端运行
-$ npm install hexo-renderer-pug hexo-renderer-stylus --save
-```
-
-4. 在 hexo 根目录下创建 <font color=#91b859>\_config.butterfly.yml</font> 文件
-
-5. 将主题目录的 <font color=#91b859>\_config.yml</font> 内容复制到 <font color=#91b859>\_config.butterfly.yml</font> 里面去。
+- 在 hexo 目录下新建 \_config.async.yml
