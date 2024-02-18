@@ -69,7 +69,7 @@ banner:
     bannerTitle: 愿神明偏爱，一切从欢
     bannerText: Hello!
   archive:
-    type: video
+    type: less
     bgurl: /img/archives.mp4
     bannerTitle: Archive
     bannerText: 归档
@@ -170,7 +170,7 @@ toc:
 # 右下按钮
 rightside:
   readmode: true
-  aside: true
+  aside: false
 
 post_wordcount:
   wordcount: true # 单篇 字数统计
@@ -184,12 +184,9 @@ wordcount:
 
 swup: true
 # 评论功能
-# comment:
-#   twikoo:
-#     enable: true
-#     envId: https://zhang-april-april.hf.space # 腾讯云环境id
-#     region: # 环境地域，默认为 ap-shanghai，如果您的环境地域不是上海，需传此参数
-#     option:
 comment:
   gitalk:
     enable: true
+
+layout:
+  fixed_btn: async/fixed-btn

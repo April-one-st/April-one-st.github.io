@@ -15,4 +15,4 @@ banner:
 
 - [博客搭建](/source/_posts/hexo-init.md)
 - [hexo 源码 推送至 github](/source/_posts/hexo-to-github.md)
-- [butterfly 魔改教程（1）](/source/_posts/hexo-butterfly-style1.md)
+- [hexo-theme-async 魔改教程](/source/_posts/hexo-butterfly-style1.md)

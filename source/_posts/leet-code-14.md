@@ -41,7 +41,7 @@ var longestCommonPrefix = function (strs) {
 };
 ```
 
-#### 题解 2
+#### 解法 2:
 
 ```javascript
 /**

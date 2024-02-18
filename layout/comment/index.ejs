@@ -1,0 +1,21 @@
+<div class="trm-card trm-scroll-animation comment-container">
+    <div id="gitalk-container"></div>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script data-swup-reload-script>
+    (function () {
+        var gitalk = new Gitalk({
+            clientID: '4850f2013499cd6d90b4',
+            clientSecret: '577bf49bdbe8cfe2c12b6f8931815d775039ae90',
+            repo: 'April-one-st.github.io',
+            owner: 'April-one-st',
+            admin: ['April-one-st'],
+            id: location.pathname,      // Ensure uniqueness and length less than 50
+            distractionFreeMode: false,  // Facebook-like distraction free mode
+            pagerDirection: 'last',
+            language: 'zh-CN'
+            })
+            gitalk.render('gitalk-container')
+    })()
+</script>

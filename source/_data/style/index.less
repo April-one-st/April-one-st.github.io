@@ -1,0 +1,20 @@
+.var-primary(@primary: #afb42b; @primary-bg: #fcfcfe; @primary-bg2: #f4f5f7; @primary-fixed-button: #ffffff; @primary-weak: #c0ca33) {
+    --primary: @primary;
+    --primary-70: fade(@primary, 70%);
+    --primary-50: fade(@primary, 50%);
+    --primary-30: fade(@primary, 30%);
+    --primary-weak: @primary-weak;
+    --primary-weak-50: fade(@primary-weak, 50%);
+    --theme-bg-color: @primary-bg; // 主题背景色
+    --theme-bg2-color: @primary-bg2; // 主题背景色2
+    --fixed-button-bg-color: @primary-fixed-button; // 侧边栏按钮颜色
+  }
+  
+  // 亮色主题色
+  :root {
+    .var-primary(#afb42b);
+    // 暗色主题色
+    &.dark {
+      .var-primary(#b2cf87,#1f2623,#141e1b, #2b312c );
+    }
+  }
