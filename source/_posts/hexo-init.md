@@ -52,19 +52,15 @@ $ hexo s
 
 ## 推送至 github
 
-1. 创建 sshkey
+1. github 新建项目，项目名称必须以 `项目名.github.io` 格式命名
+
+2. 本地生成 sshkey
 
 ```bash
 $ ssh-keygen -t rsa -C "your_email"
 ```
 
-2. 查看 sshkey
-
-```bash
-$ cat /Users/电脑用户名/.ssh/id_rsa.pub
-```
-
-3.复制 sshkey，进入 github 绑定 sshkey
+3. 复制 sshkey，进入 github 绑定 sshkey(`shkey路径=》 /Users/电脑用户名/.ssh/id_rsa.pub`)
 
 4. 安装插件
 
@@ -72,9 +68,24 @@ $ cat /Users/电脑用户名/.ssh/id_rsa.pub
 $ npm install hexo-deployer-git --save
 ```
 
-5. 运行指令
+5. 将 github 仓库地址复制到 config.yml 中
+
+```yml
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: git
+  # 你的博客地址
+  repo: github url
+  branch: master
+```
+
+6. 运行指令
 
 ```bash
+# 清理缓存
+$ hexo clean
+
 # 编译
 $ hexo g
 

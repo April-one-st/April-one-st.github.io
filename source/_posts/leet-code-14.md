@@ -52,8 +52,8 @@ var longestCommonPrefix = function (strs) {
   // 初始直接定义为strs[0]
   let res = strs[0] ? strs[0] : "";
   for (let i = 0; i < strs.length; i++) {
-    // 循环判断strs的每个item是否都包含res
-    while (strs[i].indexOf(res) === -1 && res.length) {
+    // 循环判断strs的每个item是否都包含res,且其索引必须为0
+    while (strs[i].indexOf(res) !== 0 && res.length) {
       // 如果不包含，则将res的长度减1继续判断，直至满足条件或者res为''
       res = res.slice(0, res.length - 1);
     }

@@ -96,7 +96,7 @@ creative_commons:
   license: by-nc-sa
   language: deed.zh
   post: false
-  clipboard: true
+  clipboard: false
 
 # 文章过期提示
 notice_outdate:
