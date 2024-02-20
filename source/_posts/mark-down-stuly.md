@@ -17,7 +17,7 @@ banner:
 
 创建标题，可以在 title 前面添加 #。 #的数量代表了标题的级别
 
-| Markdown 语法        | 预览效果                                           | HTML 语法｜        |
+| Markdown 语法        | 预览效果                                           | HTML 语法          |
 | -------------------- | -------------------------------------------------- | ------------------ |
 | \# level 1           | <span class='prive-h1 prive-title'>level 1</span>  | \<h1>level 1\</h1> |
 | \#\# level 2         | <span class='prive-h2 prive-title'> level 2</span> | \<h2>level 2\</h2> |
@@ -30,9 +30,9 @@ banner:
 
 多个段落之间使用空白行隔开
 
-| Markdown 语法                                                                                              | 预览效果                                                                                                   | HTML 语法｜                                                                                                           |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| <p>I really like using Markdown.</p> <p>I think I'll use it to format all of my documents from now on.</p> | <p>I really like using Markdown.</p> <p>I think I'll use it to format all of my documents from now on.</p> | \<p>I really like using Markdown.\</p><br/> \<p>I think I'll use it to format all of my documents from now on.\</p>｜ |
+| Markdown 语法                                                                                              | 预览效果                                                                                                   | HTML 语法                                                                                                           |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| <p>I really like using Markdown.</p> <p>I think I'll use it to format all of my documents from now on.</p> | <p>I really like using Markdown.</p> <p>I think I'll use it to format all of my documents from now on.</p> | \<p>I really like using Markdown.\</p><br/> \<p>I think I'll use it to format all of my documents from now on.\</p> |
 
 ## 换行语法
 
@@ -48,7 +48,7 @@ banner:
 
 可以在内容前后添加两个\*\*xxx\*\* 或者 \_\_xxx\_\_
 
-| Markdown 语法                  | 预览效果                   | HTML 语法｜                               |
+| Markdown 语法                  | 预览效果                   | HTML 语法                                 |
 | ------------------------------ | -------------------------- | ----------------------------------------- |
 | I just love \*\*bold text\*\*. | I just love **bold text**. | I just love \<strong>bold text\</strong>. |
 | I just love\_\_bold text\_\_.  | I just love **bold text**. | I just love \<strong>bold text\</strong>. |

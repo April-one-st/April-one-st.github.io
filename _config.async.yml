@@ -190,6 +190,9 @@ comment:
 
 layout:
   fixed_btn: async/fixed-btn
+  comment: async/comment/index
+  page_loading: async/preloader/page-preloader
+  page_links: async/page/links
 
 cdn:
   css: ["https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"]
