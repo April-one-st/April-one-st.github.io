@@ -1,11 +1,11 @@
 ---
 title: Markdown 语法学习 （基本语法）
 categories: Markdown
-cover: /img/04.png
+cover: /img/10.png
 keywords: Markdown Study
 banner:
   type: img
-  bgurl: /img/04.png
+  bgurl: /img/10.png
   bannerText:
 ---
 

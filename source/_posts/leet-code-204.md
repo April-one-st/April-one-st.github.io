@@ -1,11 +1,11 @@
 ---
 title: 204. 计数质数
-cover: /img/08.png
+cover: /img/09.png
 categories: leetCode
 keywords: leetCode
 banner:
   type: img
-  bgurl: /img/08.png
+  bgurl: /img/09.png
   bannerText:
 ---
 
