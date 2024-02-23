@@ -55,6 +55,17 @@
       image: https://echarts.apache.org/en/images/echarts-footer-logo.png
       desc: 一个基于 JavaScript 的开源可视化图表库
 
+- title: AI
+  values:
+    - name: ChatGPT
+      url: https://chat.openai.com/
+      image: https://play-lh.googleusercontent.com/6qi3w4uqKaD1c-CBdkkfO6IL0lH4OoCTEdiX0oYbLFxwfvxu1t8vuwHcagdYSFmFKmI=w240-h480-rw
+      desc: ChatGPT是一个免费使用的人工智能系统。
+    - name: Gemini
+      url: https://gemini.google.com/app
+      image: https://logowik.com/content/uploads/images/google-ai-gemini91216.logowik.com.webp
+      desc: 从谷歌人工智能中获得写作、计划、学习等方面的帮助。
+
 - title: 其他网站
   values:
     - name: 色谱
