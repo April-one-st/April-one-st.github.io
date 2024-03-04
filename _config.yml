@@ -104,5 +104,5 @@ theme: async
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/April-one-st/April-one-st.github.io.git
+  repo: git@github.com:April-one-st/April-one-st.github.io.git
   branch: master
