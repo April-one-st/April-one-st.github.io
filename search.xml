@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>butterfly 魔改教程</title>
+    <url>/2024/01/20/hexo-butterfly-style1/</url>
+    <content><![CDATA[<!-- @format -->
+
+<p>记录一些博客搭建过程中的魔改教程。<br><code>由于本站已更新主题为Hexo-Theme-Async，故本篇文章将停止更新，谢谢！</code><br><code>如需魔改butterfly，可参考好友</code><a href="https://wutiaowu5t5.github.io/">Nanami Kento</a></p>
+<h2 id="首页背景图替换为视频"><a href="#首页背景图替换为视频" class="headerlink" title="首页背景图替换为视频"></a>首页背景图替换为视频</h2><ol>
+<li><p>找到文件 themes\butterfly\layout\includes\header\index.pug</p>
+</li>
+<li><p>添加代码（注意锁进）</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;!-- 有两个 else if is_home(), 在第一个的里面直接添加就好 --&gt;</span><br><span class="line">else if is_home()</span><br><span class="line">    if page.index_video ? page.index_video : theme.index_video</span><br><span class="line">    video#index-video.videosy(autoplay=&#x27;&#x27; loop=&#x27;&#x27; muted=&#x27;&#x27; __idm_id__=&#x27;196610&#x27; style=&#x27;object-fit:fill;width:100%;height:100%;&#x27;)</span><br><span class="line">        source(src=theme.index_video)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加主题配置文件 _config.butterfly.yml</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注意将 index_img 设置为false</span></span><br><span class="line"><span class="comment"># The banner image of home page</span></span><br><span class="line"><span class="attr">index_img:</span> <span class="literal">false</span> <span class="comment"># 下面添加</span></span><br><span class="line"><span class="attr">index_video:</span> <span class="string">&quot;your void url&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="屏幕樱花效果"><a href="#屏幕樱花效果" class="headerlink" title="屏幕樱花效果"></a>屏幕樱花效果</h2><ol>
+<li>_config.yml 文件配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="comment"># - &lt;link rel=&quot;stylesheet&quot; href=&quot;/xxx.css&quot;&gt;</span></span><br><span class="line">  <span class="attr">bottom:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">src=&quot;https://cnhkbbs.github.io/staticcdn/hexo/sakura.js&quot;&gt;&lt;/script&gt;</span> <span class="comment"># 樱花动效</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="增加搜索功能"><a href="#增加搜索功能" class="headerlink" title="增加搜索功能"></a>增加搜索功能</h2><ol>
+<li>安装插件</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-generator-search --save</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>_config.yml 中添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>修改 _config.butterfly.yml 配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">CDN:</span></span><br><span class="line"><span class="comment"># 修改完后从新启动项目即可</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="导航栏魔改"><a href="#导航栏魔改" class="headerlink" title="导航栏魔改"></a>导航栏魔改</h2><h3 id="搜索按钮右移"><a href="#搜索按钮右移" class="headerlink" title="搜索按钮右移"></a>搜索按钮右移</h3><ol>
+<li>修改 butterfly 主题的 themes&#x2F;butterfly&#x2F;layout&#x2F;includes&#x2F;header&#x2F;nav.pug 文件</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//- +表示新增代码 - 表示减少代码</span><br><span class="line">//- 注意代码缩进</span><br><span class="line">nav#nav</span><br><span class="line">  span#blog_name</span><br><span class="line">    a#site-name(href=url_for(&#x27;/&#x27;)) #[=config.title]</span><br><span class="line"></span><br><span class="line">  #menus</span><br><span class="line">+  !=partial(&#x27;includes/header/menu_item&#x27;, &#123;&#125;, &#123;cache: true&#125;)</span><br><span class="line">+  #nav-right</span><br><span class="line">    if (theme.algolia_search.enable || theme.local_search.enable)</span><br><span class="line">      #search-button</span><br><span class="line">        a.site-page.social-icon.search</span><br><span class="line">          i.fas.fa-search.fa-fw</span><br><span class="line">+          //- span=&#x27; &#x27;+_p(&#x27;search.title&#x27;)</span><br><span class="line">-    !=partial(&#x27;includes/header/menu_item&#x27;, &#123;&#125;, &#123;cache: true&#125;)</span><br><span class="line"></span><br><span class="line">    #toggle-menu</span><br><span class="line">      a.site-page</span><br><span class="line">        i.fas.fa-bars.fa-fw</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>自定义 css 文件，并引入</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#nav-right</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span> <span class="number">1</span> auto;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-end;</span><br><span class="line">  <span class="attribute">margin-left</span>: auto;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="鼠标移入放大效果"><a href="#鼠标移入放大效果" class="headerlink" title="鼠标移入放大效果"></a>鼠标移入放大效果</h3><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 同样是自定义css文件引入主题 */</span></span><br><span class="line"><span class="comment">/* 去除导航栏选项中底下的蓝条 */</span></span><br><span class="line"><span class="selector-id">#nav</span> *<span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: transparent <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 导航栏菜单鼠标移入字体放大 */</span></span><br><span class="line"><span class="selector-id">#nav</span> <span class="selector-id">#site-name</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-id">#nav</span> <span class="selector-class">.menus_item</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-id">#nav</span> <span class="selector-id">#search-button</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">28px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>博客搭建</title>
+    <url>/2024/01/20/hexo-init/</url>
+    <content><![CDATA[<!-- @format -->
+
+<p>记录下博客搭建过程，本站采用 <a href="https://hexo.io/zh-cn/index.html">hexo</a> + <a href="https://hexo-theme-async.imalun.com/">Hexo-Theme-Async</a> 搭建完成。</p>
+<h2 id="hexo-建站"><a href="#hexo-建站" class="headerlink" title="hexo 建站"></a>hexo 建站</h2><ol>
+<li>安装 hexo</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>初始化 hexo</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>安装依赖</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>项目编译</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line"><span class="comment"># 简写</span></span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>运行项目</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line"><span class="comment"># 简写</span></span><br><span class="line">$ hexo s</span><br><span class="line"><span class="comment"># 运行之后在本地浏览器访问 http://localhost:4000/ 即可预览</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="推送至-github"><a href="#推送至-github" class="headerlink" title="推送至 github"></a>推送至 github</h2><ol>
+<li><p>github 新建项目，项目名称必须以 <code>项目名.github.io</code> 格式命名</p>
+</li>
+<li><p>本地生成 sshkey</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;your_email&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>复制 sshkey，进入 github 绑定 sshkey(<code>shkey路径=》 /Users/电脑用户名/.ssh/id_rsa.pub</code>)</p>
+</li>
+<li><p>安装插件</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>将 github 仓库地址复制到 config.yml 中</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="comment"># 你的博客地址</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">github</span> <span class="string">url</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>运行指令</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 清理缓存</span></span><br><span class="line">$ hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译</span></span><br><span class="line">$ hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送</span></span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<h2 id="主题应用"><a href="#主题应用" class="headerlink" title="主题应用"></a>主题应用</h2><p><code>请确保已经安装渲染器： hexo-renderer-ejs 和 hexo-renderer-less。</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install --save hexo-renderer-less hexo-renderer-ejs</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>安装<a href="https://hexo-theme-async.imalun.com/">主题</a></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm i hexo-theme-async@latest</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>启用主题</p>
+<p>修改根目录下 <font color=#91b859>_config.yml</font> 文件，将主题修改为 async</p>
+</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="string">$</span> <span class="attr">theme:</span> <span class="string">async</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>配置主题 Config</li>
+</ol>
+<ul>
+<li>在 hexo 目录下新建 _config.async.yml</li>
+</ul>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>hexo源码 推送至 github</title>
+    <url>/2024/01/20/hexo-to-github/</url>
+    <content><![CDATA[<!-- @format -->
+
+<p>可以将 hexo 的源码推送至 github，方便更换设备时直接拉取代码。</p>
+<ol>
+<li><p>去 github 上在博客的项目里新建一个分支 <font color=#91b859> hexo </font> ，并将其设置为默认分支。</p>
+</li>
+<li><p>在本地新建一个文件夹，并将 hexo 分支的代码 clone 下来</p>
+</li>
+<li><p>打开新建的文件夹，查看隐藏文件，删除掉除 <font color=#91b859> .git </font> 之外的所有文件</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mac隐藏文件查看方式,重复操作可隐藏</span></span><br><span class="line">$ Command + Shift + .</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>终端进入 hexo 下面，依次执行</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">&quot;feat: init&quot;</span></span><br><span class="line">$ git push origin hexo</span><br><span class="line"><span class="comment"># 此时再次进入 github 查看 hexo 分支的代码，发现已经是空的了</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li><p>将 .git 文件复制到 blog 项目的根目录下，并删除掉 <font color=#91b859> themes </font> 文件夹下的 <font color=#91b859> .git </font> 和 <font color=#91b859> .gitignore </font> 文件（包括各个主题下的也要删除，否则主题的代码推不上去）。</p>
+</li>
+<li><p>终端进入博客根目录，依次执行</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git commit -m <span class="string">&quot;feat: init&quot;</span></span><br><span class="line">$ git push origin hexo</span><br></pre></td></tr></table></figure>
+
+<p>到这就已经可以了，后续可以将 github 上 hexo 分支的代码 clone 下来继续编写博客了。使用 git 管理代码，hexo 发布博客。</p>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>14. 最长公共前缀</title>
+    <url>/2024/02/16/leet-code-14/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 “”。</p>
+<blockquote>
+<p>示例 1:<br>输入：strs &#x3D; [“flower”,”flow”,”flight”]<br>输出：”fl”</p>
+</blockquote>
+<blockquote>
+<p>示例 2:<br>输入：strs &#x3D; [“dog”,”racecar”,”car”]<br>输出：””<br>解释：输入不存在公共前缀。</p>
+</blockquote>
+</blockquote>
+<h4 id="解法-1"><a href="#解法-1" class="headerlink" title="解法 1:"></a>解法 1:</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string[]</span>&#125; <span class="variable">strs</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">string</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> longestCommonPrefix = <span class="keyword">function</span> (<span class="params">strs</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="comment">//不存在则直接返回res</span></span><br><span class="line">  <span class="keyword">if</span> (!strs.<span class="property">length</span>) <span class="keyword">return</span> res;</span><br><span class="line">  <span class="comment">//第一层遍历strs[0]第一个value，获取公共字符</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; strs[<span class="number">0</span>].<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 第二层遍历strs，判断是否存在公共前缀，如不存在则直接返回res</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; strs.<span class="property">length</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (strs[<span class="number">0</span>][i] !== strs[j][i]) <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 当strs的所有item都满足条件时，继续增加公共字符长度测试</span></span><br><span class="line">    res += strs[<span class="number">0</span>][i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="解法-2"><a href="#解法-2" class="headerlink" title="解法 2:"></a>解法 2:</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">string[]</span>&#125; <span class="variable">strs</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">string</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> longestCommonPrefix = <span class="keyword">function</span> (<span class="params">strs</span>) &#123;</span><br><span class="line">  <span class="comment">// 初始直接定义为strs[0]</span></span><br><span class="line">  <span class="keyword">let</span> res = strs[<span class="number">0</span>] ? strs[<span class="number">0</span>] : <span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; strs.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 循环判断strs的每个item是否都包含res,且其索引必须为0</span></span><br><span class="line">    <span class="keyword">while</span> (strs[i].<span class="title function_">indexOf</span>(res) !== <span class="number">0</span> &amp;&amp; res.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="comment">// 如果不包含，则将res的长度减1继续判断，直至满足条件或者res为&#x27;&#x27;</span></span><br><span class="line">      res = res.<span class="title function_">slice</span>(<span class="number">0</span>, res.<span class="property">length</span> - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>16. 最接近的三数之和</title>
+    <url>/2024/02/19/leet-code-16/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给你一个长度为 n 的整数数组 nums 和 一个目标值 target。请你从 nums 中选出三个整数，使它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在恰好一个解。</p>
+<blockquote>
+<p>示例 1:<br>输入：nums &#x3D; [-1,2,1,-4], target &#x3D; 1<br>输出：2<br>解释：与 target 最接近的和是 2 (-1 + 2 + 1 &#x3D; 2) 。</p>
+</blockquote>
+<blockquote>
+<p>示例 2:<br>输入：nums &#x3D; [0,0,0], target &#x3D; 1<br>输出：0</p>
+</blockquote>
+</blockquote>
+<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><ol>
+<li><p>先将数组升序排列，初始化一个最小值</p>
+</li>
+<li><p>遍历数组，定义双指针，如果当前和更接近，更新最小值</p>
+</li>
+<li><p>根据当前三数之和和 target 的关系，移动指针</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">nums</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">target</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> threeSumClosest = <span class="keyword">function</span> (<span class="params">nums, target</span>) &#123;</span><br><span class="line">  <span class="comment">// 先将nums 按升序排序</span></span><br><span class="line">  nums.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line">  <span class="keyword">const</span> len = nums.<span class="property">length</span>;</span><br><span class="line">  <span class="comment">//初始化一个最小值</span></span><br><span class="line">  <span class="keyword">let</span> res = <span class="title class_">Number</span>.<span class="property">MAX_SAFE_INTEGER</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="comment">// 定义左右指针</span></span><br><span class="line">    <span class="keyword">let</span> left = i + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> right = len - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">      <span class="comment">//计算出当前的三数之合</span></span><br><span class="line">      <span class="keyword">const</span> sum = nums[i] + nums[left] + nums[right];</span><br><span class="line">      <span class="comment">//更新最小值</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="title class_">Math</span>.<span class="title function_">abs</span>(sum - target) &lt; <span class="title class_">Math</span>.<span class="title function_">abs</span>(res - target)) &#123;</span><br><span class="line">        res = sum;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//根据最小值和target的关系移动左右指针</span></span><br><span class="line">      <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">        left++;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        right--;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>204. 计数质数</title>
+    <url>/2024/02/20/leet-code-204/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给定整数 n ，返回 所有小于非负整数 n 的质数的数量 。</p>
+<blockquote>
+<p>示例 1:<br>输入: n &#x3D; 10 <br>输出: 4 <br> 解释：小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。</p>
+</blockquote>
+<blockquote>
+<p>示例 2:<br>输入: n &#x3D; 0<br>输出: 0</p>
+</blockquote>
+<blockquote>
+<p>示例 3:<br>输入: n &#x3D; 1<br>输出: 0</p>
+</blockquote>
+</blockquote>
+<p><code>质数（Prime Number）是指大于 1 的自然数中，除了 1 和自身外，不能被其他自然数整除的数。换句话说，质数只能被 1 和它本身整除，没有其他的正因数。</code></p>
+<h4 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h4><ul>
+<li>暴力解法直接遍历<code>该方法官方提示超时😭</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 判断一个数是不是质数</span></span><br><span class="line"><span class="comment">// Math.sqrt(number) 是 JavaScript 中 Math 对象的一个方法，用于返回一个数的平方根。</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isPrime</span>(<span class="params">number</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (number &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 质数必须大于 1</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 循环检查从 2 到 number - 1 的所有可能的因数</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(number); i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (number % i === <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 如果能被整除，则不是质数</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 如果不能被任何数整除，则是质数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> countPrimes = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    res += <span class="title function_">isPrime</span>(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="埃氏筛"><a href="#埃氏筛" class="headerlink" title="埃氏筛"></a>埃氏筛</h4><ol>
+<li><p>初始化一个长度为 n 的布尔数组（或者称为标记数组），数组中的每个元素都被初始化为 true，表示对应的索引数是质数。</p>
+</li>
+<li><p>从第一个质数 2 开始，遍历数组中从 2 开始的所有数字。如果某个数字的值为 true，说明它是质数，则将它的所有倍数标记为 false，因为它们不是质数。</p>
+</li>
+<li><p>继续遍历下一个未被标记为 false 的数字，重复第二步操作，直到遍历到数组的末尾。</p>
+</li>
+<li><p>最后，数组中仍然为 true 的索引即为质数。</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> countPrimes = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> res = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">const</span> arr = <span class="keyword">new</span> <span class="title class_">Array</span>(n).<span class="title function_">fill</span>(<span class="literal">true</span>);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">2</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (arr[i]) &#123;</span><br><span class="line">      res++;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> j = i * i; j &lt;= n; j += i) &#123;</span><br><span class="line">        arr[j] = <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>2618. 检查是否是类的对象实例</title>
+    <url>/2024/02/23/leet-code-2618/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>请你编写一个函数，检查给定的值是否是给定类或超类的实例。可以传递给函数的数据类型没有限制。例如，值或类可能是 undefined 。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>示例 1:<br>输入: func &#x3D; () &#x3D;&gt; checkIfInstance(new Date(), Date) <br>输出: true <br> 解释：根据定义，Date 构造函数返回的对象是 Date 的一个实例。</p>
+</blockquote>
+<blockquote>
+<p>示例 2:<br>输入: func &#x3D; () &#x3D;&gt; { class Animal {}; class Dog extends Animal {}; return checkIfInstance(new Dog(), Animal); }<br>输出: true <br> 解释： Dog 是 Animal 的子类。因此，Dog 对象同时是 Dog 和 Animal 的实例。</p>
+</blockquote>
+<blockquote>
+<p>示例 3:<br>输入: func &#x3D; () &#x3D;&gt; checkIfInstance(Date, Date)<br>输出: false <br> 解释：日期的构造函数在逻辑上不能是其自身的实例。</p>
+</blockquote>
+<blockquote>
+<p>示例 4:<br>输入: func &#x3D; () &#x3D;&gt; checkIfInstance(5, Number)<br>输出: true <br> 解释： 5 是一个 Number。注意，”instanceof” 关键字将返回 false。</p>
+</blockquote>
+</blockquote>
+<h4 id="题解一"><a href="#题解一" class="headerlink" title="题解一"></a>题解一</h4><ul>
+<li>如果没有 obj 或者 classFunction 则直接返回 false</li>
+<li>使用 Object 将 obj 转为对象类型，使用 instanceof 判断 obj 是否在 classFunction 实例上</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; <span class="variable">obj</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; <span class="variable">classFunction</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">boolean</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> checkIfInstanceOf = <span class="keyword">function</span> (<span class="params">obj, classFunction</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (obj === <span class="literal">null</span> || obj === <span class="literal">undefined</span> || !(classFunction <span class="keyword">instanceof</span> <span class="title class_">Function</span>))</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Object</span>(obj) <span class="keyword">instanceof</span> classFunction;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="题解二"><a href="#题解二" class="headerlink" title="题解二"></a>题解二</h4><ul>
+<li>递归手动实现 instanceof</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; <span class="variable">obj</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; <span class="variable">classFunction</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">boolean</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> checkIfInstanceOf = <span class="keyword">function</span> (<span class="params">obj, classFunction</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    obj === <span class="literal">null</span> ||</span><br><span class="line">    obj === <span class="literal">undefined</span> ||</span><br><span class="line">    classFunction === <span class="literal">null</span> ||</span><br><span class="line">    classFunction === <span class="literal">undefined</span></span><br><span class="line">  )</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">let</span> pro = obj.<span class="property">__proto__</span>;</span><br><span class="line">  <span class="keyword">while</span> (pro &amp;&amp; pro !== classFunction.<span class="property"><span class="keyword">prototype</span></span>) &#123;</span><br><span class="line">    pro = pro.<span class="property">__proto__</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> pro === classFunction.<span class="property"><span class="keyword">prototype</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>2619. 数组原型对象的最后一个元素</title>
+    <url>/2024/02/22/leet-code-2619/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>请你编写一段代码实现一个数组方法，使任何数组都可以调用 array.last() 方法，这个方法将返回数组最后一个元素。如果数组中没有元素，则返回 -1 。<br>你可以假设数组是 JSON.parse 的输出结果。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>示例 1:<br>输入: nums &#x3D; [null, {}, 3] <br>输出: 3 <br> 解释：调用 nums.last() 后返回最后一个元素： 3。</p>
+</blockquote>
+<blockquote>
+<p>示例 2:<br>输入: nums &#x3D; []<br>输出: -1 <br> 解释： 因为此数组没有元素，所以应该返回 -1。</p>
+</blockquote>
+</blockquote>
+<p>提示:</p>
+<ul>
+<li>arr 是一个有效的 JSON 数组</li>
+<li>0 &lt;&#x3D; arr.length &lt;&#x3D; 1000</li>
+</ul>
+<h4 id="题解"><a href="#题解" class="headerlink" title="题解:"></a>题解:</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">null|boolean|number|string|Array|Object</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">last</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">length</span> ? <span class="variable language_">this</span>[<span class="variable language_">this</span>.<span class="property">length</span> - <span class="number">1</span>] : -<span class="number">1</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>2620. 计数器</title>
+    <url>/2024/02/27/leet-code-2620/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给定一个整型参数 n，请你编写并返回一个 counter 函数。这个 counter 函数最初返回 n，每次调用它时会返回前一个值加 1 的值 ( n , n + 1 , n + 2 ，等等)。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>示例 1:<br>输入: n &#x3D; 10<br>[“call”,”call”,”call”] <br>输出: [10,11,12] <br> 解释：counter() &#x3D; 10 &#x2F;&#x2F; 第一次调用 counter()，返回 n。<br>counter() &#x3D; 11 &#x2F;&#x2F; 返回上次调用的值加 1。<br>counter() &#x3D; 12 &#x2F;&#x2F; 返回上次调用的值加 1。</p>
+</blockquote>
+<blockquote>
+<p>示例 2:<br>输入: n &#x3D; -2<br> [“call”,”call”,”call”,”call”,”call”]<br>输出: [-2,-1,0,1,2] <br> 解释： counter() 最初返回 -2。然后在每个后续调用后增加 1。</p>
+</blockquote>
+</blockquote>
+<p>提示:</p>
+<ul>
+<li>-1000 &lt;&#x3D; n &lt;&#x3D; 1000</li>
+<li>0 &lt;&#x3D; calls.length &lt;&#x3D; 1000</li>
+<li>calls[i] &#x3D;&#x3D;&#x3D; “call”</li>
+</ul>
+<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><ul>
+<li>利用闭包的原理</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">Function</span>&#125; <span class="variable">counter</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> createCounter = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n++;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>2621. 睡眠函数</title>
+    <url>/2024/03/04/leet-code-2621/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>请你编写一个异步函数，它接收一个正整数参数 millis ，并休眠 millis 毫秒。要求此函数可以解析任何值。</p>
+<blockquote>
+<p>示例 1:<br>输入: millis &#x3D; 100 <br>输出: 100 <br> 解释：<br>在 100ms 后此异步函数执行完时返回一个 Promise 对象<br>let t &#x3D; Date.now();<br>sleep(100).then(() &#x3D;&gt; {<br>&nbsp; &nbsp;console.log(Date.now() - t); &#x2F;&#x2F; 100<br>});&#96;</p>
+</blockquote>
+<blockquote>
+<p>示例 2:<br>输入: millis &#x3D; 200<br>输出: 200 <br> 解释： 在 200ms 后函数执行完时返回一个 Promise 对象</p>
+</blockquote>
+</blockquote>
+<p>提示:</p>
+<ul>
+<li>1 &lt;&#x3D; millis &lt;&#x3D; 1000</li>
+</ul>
+<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">millis</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">Promise</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">sleep</span>(<span class="params">millis</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">resolve</span>();</span><br><span class="line">    &#125;, millis);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * let t = Date.now()</span></span><br><span class="line"><span class="comment"> * sleep(100).then(() =&gt; console.log(Date.now() - t)) // 100</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>35. 搜索插入位置</title>
+    <url>/2024/02/14/leet-code-35/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给定一个排序的整数数组 nums 和一个整数目标值 target ，请在数组中找到 target ，并返回其下标。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。请必须使用时间复杂度为 <code>O(log n)</code> 的算法。</p>
+<blockquote>
+<p>示例 1:<br>输入: nums &#x3D; [1,3,5,6], target &#x3D; 5 <br>输出: 2</p>
+</blockquote>
+<blockquote>
+<p>示例 2:<br>输入: nums &#x3D; [1,3,5,6], target &#x3D; 2<br>输出: 1</p>
+</blockquote>
+</blockquote>
+<h4 id="解法-1"><a href="#解法-1" class="headerlink" title="解法 1"></a>解法 1</h4><p>直接遍历所有元素</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> searchInsert = <span class="keyword">function</span> (<span class="params">nums, target</span>) &#123;</span><br><span class="line">  <span class="comment">// 如果没有则遍历nums</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// 当target 等于当前值，则直接返回index</span></span><br><span class="line">    <span class="keyword">if</span> (target === nums[i]) &#123;</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 当target 小于当前值时，则插入到当前的位置，并返回index</span></span><br><span class="line">    <span class="keyword">if</span> (target &lt; nums[i]) &#123;</span><br><span class="line">      nums.<span class="title function_">splice</span>(i, <span class="number">0</span>, target);</span><br><span class="line">      <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 当遍历结束，target仍然大于所有值时，则插入到nums最后，并返回index</span></span><br><span class="line">    <span class="keyword">if</span> (i === nums.<span class="property">length</span> - <span class="number">1</span> &amp;&amp; target &gt; nums[i]) &#123;</span><br><span class="line">      nums.<span class="title function_">push</span>(target);</span><br><span class="line">      <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="解法-2"><a href="#解法-2" class="headerlink" title="解法 2"></a>解法 2</h4><ol>
+<li>定义起始和结束坐标（left,right）</li>
+<li>每次都根据起始和结束坐标查找中间坐标位置(mid)</li>
+<li>如果中间坐标等于目标元素，则直接返回<ul>
+<li>如果中间坐标大于目标元素，则 right 左移</li>
+<li>如果中间坐标小于目标元素，则 left 右移</li>
+</ul>
+</li>
+<li>重复上述步骤，知道找到目标元素位置</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> searchInsert = <span class="keyword">function</span> (<span class="params">nums, target</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> left = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">let</span> right = nums.<span class="property">length</span> - <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> result = nums.<span class="property">length</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (left &lt;= right) &#123;</span><br><span class="line">    <span class="keyword">let</span> mid = left + <span class="title class_">Math</span>.<span class="title function_">floor</span>((right - left) / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">if</span> (target &lt;= nums[mid]) &#123;</span><br><span class="line">      result = mid;</span><br><span class="line">      right = mid - <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (target &gt; nums[mid]) &#123;</span><br><span class="line">      left = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Markdown 语法学习 （基本语法）</title>
+    <url>/2024/02/11/mark-down-stuly/</url>
+    <content><![CDATA[<!-- @format -->
+
+<p>学习 markdown 语法，<a href="https://markdown.com.cn/intro.html">官网地址</a></p>
+<h2 id="标题语法"><a href="#标题语法" class="headerlink" title="标题语法"></a>标题语法</h2><p>创建标题，可以在 title 前面添加 #。 #的数量代表了标题的级别</p>
+<table>
+<thead>
+<tr>
+<th>Markdown 语法</th>
+<th>预览效果</th>
+<th>HTML 语法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td># level 1</td>
+<td><span class='prive-h1 prive-title'>level 1</span></td>
+<td>&lt;h1&gt;level 1&lt;&#x2F;h1&gt;</td>
+</tr>
+<tr>
+<td>## level 2</td>
+<td><span class='prive-h2 prive-title'> level 2</span></td>
+<td>&lt;h2&gt;level 2&lt;&#x2F;h2&gt;</td>
+</tr>
+<tr>
+<td>### level 3</td>
+<td><span class='prive-h3 prive-title'> level 3</span></td>
+<td>&lt;h3&gt;level 3&lt;&#x2F;h3&gt;</td>
+</tr>
+<tr>
+<td>#### level 4</td>
+<td><h4 class="test-h4"> level 4</h4></td>
+<td>&lt;h4&gt;level 4&lt;&#x2F;h4&gt;</td>
+</tr>
+<tr>
+<td>##### level 5</td>
+<td><h5 class="test-h5"> level 5</h5></td>
+<td>&lt;h5&gt;level 5&lt;&#x2F;h5&gt;</td>
+</tr>
+<tr>
+<td>###### level 6</td>
+<td><h6 class="test-h6"> level 6</h6></td>
+<td>&lt;h6&gt;level 6&lt;&#x2F;h6&gt;</td>
+</tr>
+</tbody></table>
+<h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h2><p>多个段落之间使用空白行隔开</p>
+<table>
+<thead>
+<tr>
+<th>Markdown 语法</th>
+<th>预览效果</th>
+<th>HTML 语法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><p>I really like using Markdown.</p> <p>I think I’ll use it to format all of my documents from now on.</p></td>
+<td><p>I really like using Markdown.</p> <p>I think I’ll use it to format all of my documents from now on.</p></td>
+<td>&lt;p&gt;I really like using Markdown.&lt;&#x2F;p&gt;<br/> &lt;p&gt;I think I’ll use it to format all of my documents from now on.&lt;&#x2F;p&gt;</td>
+</tr>
+</tbody></table>
+<h2 id="换行语法"><a href="#换行语法" class="headerlink" title="换行语法"></a>换行语法</h2><p>在一行的末尾添加两个或多个空格，然后按回车键,即可创建一个换行(&lt;br&gt;)。</p>
+<table>
+<thead>
+<tr>
+<th>Markdown 语法</th>
+<th>预览效果</th>
+<th>HTML 语法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><p>This is the first line.<br>And this is the second line.</p></td>
+<td><p>This is the first line.<br>And this is the second line.</p></td>
+<td>&lt;p&gt;This is the first line.<br>&lt;br&gt; <br>And this is the second line.&lt;&#x2F;p&gt;</td>
+</tr>
+</tbody></table>
+<h2 id="强调语法"><a href="#强调语法" class="headerlink" title="强调语法"></a>强调语法</h2><h3 id="粗体"><a href="#粗体" class="headerlink" title="粗体"></a>粗体</h3><p>可以在内容前后添加两个**xxx** 或者 __xxx__</p>
+<table>
+<thead>
+<tr>
+<th>Markdown 语法</th>
+<th>预览效果</th>
+<th>HTML 语法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>I just love **bold text**.</td>
+<td>I just love <strong>bold text</strong>.</td>
+<td>I just love &lt;strong&gt;bold text&lt;&#x2F;strong&gt;.</td>
+</tr>
+<tr>
+<td>I just love__bold text__.</td>
+<td>I just love <strong>bold text</strong>.</td>
+<td>I just love &lt;strong&gt;bold text&lt;&#x2F;strong&gt;.</td>
+</tr>
+</tbody></table>
+<h3 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h3><p>同粗体，但是前后各添加一个* 或者一个_</p>
+<h3 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h3><p>同时实现粗体和斜体 前后各添加三个***或者___</p>
+<h2 id="引用语法"><a href="#引用语法" class="headerlink" title="引用语法"></a>引用语法</h2><p><code>本博客已对该样式做了修改，原本样式可参考</code><a href="https://markdown.com.cn/basic-syntax/blockquotes.html">官网</a></p>
+<p>语法： 在段落前面添加一个 &gt; 符号</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; Dorothy followed her through many of the beautiful rooms in her castle.</span><br></pre></td></tr></table></figure>
+
+<p>渲染效果</p>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+</blockquote>
+<p><strong>多个段落的引用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; Dorothy followed her through many of the beautiful rooms in her castle.</span><br><span class="line">&gt;</span><br><span class="line">&gt; The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</span><br></pre></td></tr></table></figure>
+
+<p><code>效果预览</code></p>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+<p>The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</p>
+</blockquote>
+<p><strong>嵌套引用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; Dorothy followed her through many of the beautiful rooms in her castle.</span><br><span class="line">&gt;</span><br><span class="line">&gt;&gt; The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</span><br></pre></td></tr></table></figure>
+
+<p><code>效果预览</code></p>
+<blockquote>
+<p>Dorothy followed her through many of the beautiful rooms in her castle.</p>
+<blockquote>
+<p>The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.</p>
+</blockquote>
+</blockquote>
+<p><strong>带有其他元素块的引用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&gt; #### The quarterly results look great!</span><br><span class="line">&gt;</span><br><span class="line">&gt; - Revenue was off the chart.</span><br><span class="line">&gt; - Profits were higher than ever.</span><br><span class="line">&gt;</span><br><span class="line">&gt;  *Everything* is going according to **plan**.</span><br></pre></td></tr></table></figure>
+
+<p><code>效果预览</code></p>
+<blockquote>
+<h4 id="The-quarterly-results-look-great"><a href="#The-quarterly-results-look-great" class="headerlink" title="The quarterly results look great!"></a>The quarterly results look great!</h4><ul>
+<li><p>Revenue was off the chart.</p>
+</li>
+<li><p>Profits were higher than ever.</p>
+<p><em>Everything</em> is going according to <strong>plan</strong>.</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="列表语法"><a href="#列表语法" class="headerlink" title="列表语法"></a>列表语法</h2><h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><table>
+<thead>
+<tr>
+<th>Markdown 语法</th>
+<th>预览效果</th>
+<th>HTML 语法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. First item<br>2. Second item<br>3. Third item<br>4. Fourth item</td>
+<td>1. First item<br>2. Second item<br>3. Third item<br>4. Fourth item</td>
+<td>&lt;ol&gt;<br>&lt;li&gt;First item&lt;&#x2F;li&gt;<br>&lt;li&gt;Second item&lt;&#x2F;li&gt;<br>&lt;li&gt;Third item&lt;&#x2F;li&gt;<br>&lt;li&gt;Fourth item&lt;&#x2F;li&gt;<br>&lt;&#x2F;ol&gt;</td>
+</tr>
+</tbody></table>
+<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><p><code> 本博客已对该样式做了修改，原本样式可参考</code><a href="https://markdown.com.cn/basic-syntax/lists.html">官网</a></p>
+<table>
+<thead>
+<tr>
+<th>Markdown 语法</th>
+<th>预览效果</th>
+<th>HTML 语法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>- First item<br> - Second item<br>- Third item<br>- Fourth item</td>
+<td><ul><br><li>First item</li><br><li>Second item</li><br><li>Third item</li><br><li>Fourth item</li><br></ul></td>
+<td>&lt;ul&gt;<br>&lt;li&gt;First item&lt;&#x2F;li&gt;<br>&lt;li&gt;Second item&lt;&#x2F;li&gt;<br>&lt;li&gt;Third item&lt;&#x2F;li&gt;<br>&lt;li&gt;Fourth item&lt;&#x2F;li&gt;<br>&lt;&#x2F;ul&gt;</td>
+</tr>
+</tbody></table>
+<h2 id="代码语法"><a href="#代码语法" class="headerlink" title="代码语法"></a>代码语法</h2><p>要将单词或短语表示为代码，将其包裹在反引号 (&#96;) 中。</p>
+<table>
+<thead>
+<tr>
+<th>Markdown 语法</th>
+<th>预览效果</th>
+<th>HTML 语法｜</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>At the command prompt, type `nano`.</td>
+<td>At the command prompt, type <code>nano</code>.</td>
+<td>At the command prompt, type &lt;code&gt;nano&lt;&#x2F;code&gt;.</td>
+</tr>
+</tbody></table>
+<h2 id="分割线语法"><a href="#分割线语法" class="headerlink" title="分割线语法"></a>分割线语法</h2><p>在单独一行上使用三个或多个星号 (***)、破折号 (—) 或下划线 (___) ，并且不能包含其他内容。</p>
+<p><code>效果预览</code>：</p>
+<p>Try to put a blank line before…</p>
+<hr>
+<p>…and after a horizontal rule.</p>
+<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>[链接标题](链接地址)。</p>
+<h2 id="图片语法"><a href="#图片语法" class="headerlink" title="图片语法"></a>图片语法</h2><p>![图片名称](图片地址)</p>
+]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>hexo-theme-async 魔改教程</title>
+    <url>/2024/02/12/theme-async/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h2 id="修改主题色"><a href="#修改主题色" class="headerlink" title="修改主题色"></a>修改主题色</h2><ol>
+<li><p>创建文件 <code>_data/style/index.less</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 可以自己在 var-primary 方法里添加变量，去更改颜色</span></span><br><span class="line"><span class="selector-class">.var-primary</span>(<span class="variable">@primary</span>: <span class="number">#afb42b</span>; <span class="variable">@primary-bg</span>: <span class="number">#fcfcfe</span>; <span class="variable">@primary-bg2</span>: <span class="number">#f4f5f7</span>; <span class="variable">@primary-fixed-button</span>: <span class="number">#ffffff</span>; <span class="variable">@primary-weak</span>: <span class="number">#c0ca33</span>) &#123;</span><br><span class="line">  <span class="attr">--primary</span>: @primary;</span><br><span class="line">  <span class="attr">--primary-70</span>: fade(@primary, 70%);</span><br><span class="line">  <span class="attr">--primary-50</span>: fade(@primary, 50%);</span><br><span class="line">  <span class="attr">--primary-30</span>: fade(@primary, 30%);</span><br><span class="line">  <span class="attr">--primary-weak</span>: @primary-weak;</span><br><span class="line">  <span class="attr">--primary-weak-50</span>: fade(@primary-weak, 50%);</span><br><span class="line">  <span class="attr">--theme-bg-color</span>: @primary-bg; <span class="comment">// 主题背景色</span></span><br><span class="line">  <span class="attr">--theme-bg2-color</span>: @primary-bg2; <span class="comment">// 主题背景色2</span></span><br><span class="line">  <span class="attr">--fixed-button-bg-color</span>: @primary-fixed-button; <span class="comment">// 侧边栏按钮颜色</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 亮色主题色</span></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="selector-class">.var-primary</span>(<span class="number">#afb42b</span>);</span><br><span class="line">  <span class="comment">// 暗色主题色</span></span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-class">.dark</span> &#123;</span><br><span class="line">    <span class="selector-class">.var-primary</span>(<span class="number">#b2cf87</span>,<span class="number">#1f2623</span>,<span class="number">#141e1b</span>, <span class="number">#2b312c</span> );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="搜索移动到侧栏按钮"><a href="#搜索移动到侧栏按钮" class="headerlink" title="搜索移动到侧栏按钮"></a>搜索移动到侧栏按钮</h2><ol>
+<li><p>新建文件 <code>layout/fixed-btn.ejs</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&lt;% let is_toc = is_post() &amp;&amp; (theme.toc.enable &amp;&amp; page.toc !== false ) let</span><br><span class="line">toc_content = &#x27;&#x27;; if(is_toc)&#123; toc_content = toc(page.content, &#123;list_number:</span><br><span class="line">theme.toc.list_number, max_depth: theme.toc.max_depth, min_depth:</span><br><span class="line">theme.toc.min_depth&#125;); is_toc = is_toc &amp;&amp; toc_content.length &gt; 1; &#125; %&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-fixed-container&quot;</span>&gt;</span></span><br><span class="line">  &lt;% if(theme.search.enable)&#123; %&gt; &lt;% if(theme.search.type === &#x27;local&#x27;)&#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">&quot;trm-search-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot; trm-fixed-btn trm-search-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.search&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.search) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% &#125;%&gt; &lt;% &#125; %&gt; &lt;% if(is_toc) &#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot;trm-fixed-btn post-toc-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.toc_title&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.toc_tag) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% &#125; %&gt; &lt;% if(is_post() &amp;&amp; theme.rightside.readmode) &#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot;trm-fixed-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.readmode_title&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">onclick</span>=<span class="string">&quot;asyncFun.switchReadMode()&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.read) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% &#125; %&gt; &lt;% if(theme.rightside.aside &amp;&amp; !page.single_column) &#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot;trm-fixed-btn hidden-md&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.aside&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">onclick</span>=<span class="string">&quot;asyncFun.switchSingleColumn()&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.arrows) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">&quot;trm-back-top&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot;trm-fixed-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.back_to_top&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.back_top) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>_config.async.yml 添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">layout:</span></span><br><span class="line">  <span class="attr">fixed_btn:</span> <span class="string">async/fixed-btn</span></span><br><span class="line">  <span class="comment"># 其他文件配置</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="添加-gitalk-评论功能"><a href="#添加-gitalk-评论功能" class="headerlink" title="添加 gitalk 评论功能"></a>添加 gitalk 评论功能</h2><ol>
+<li><p><a href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">申请 gitalk</a></p>
+</li>
+<li><p>新建文件 <code>layout/comment/index.ejs</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 评论渲染的位置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-card trm-scroll-animation comment-container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;gitalk-container&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 引入cdn资源 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">data-swup-reload-script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> <span class="title class_">Gitalk</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">clientID</span>: <span class="string">&quot;4850f2013499cd6d90b4&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">clientSecret</span>: <span class="string">&quot;577bf49bdbe8cfe2c12b6f8931815d775039ae90&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">repo</span>: <span class="string">&quot;April-one-st.github.io&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">owner</span>: <span class="string">&quot;April-one-st&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">admin</span>: [<span class="string">&quot;April-one-st&quot;</span>],</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">id</span>: location.<span class="property">pathname</span>, <span class="comment">// Ensure uniqueness and length less than 50</span></span></span><br><span class="line"><span class="language-javascript">      <span class="attr">distractionFreeMode</span>: <span class="literal">false</span>, <span class="comment">// Facebook-like distraction free mode</span></span></span><br><span class="line"><span class="language-javascript">      <span class="attr">pagerDirection</span>: <span class="string">&quot;last&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">language</span>: <span class="string">&quot;zh-CN&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript">    gitalk.<span class="title function_">render</span>(<span class="string">&quot;gitalk-container&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;)();</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>_config.async.yml 添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">layout:</span></span><br><span class="line">  <span class="attr">comment:</span> <span class="string">async/comment/index</span></span><br><span class="line">  <span class="comment"># 其他文件配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加cdn资源加载</span></span><br><span class="line"><span class="attr">cdn:</span></span><br><span class="line">  <span class="attr">css:</span> [<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css&quot;</span>]</span><br><span class="line">  <span class="attr">js:</span></span><br><span class="line">    <span class="attr">head:</span> [<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js&quot;</span>]</span><br><span class="line">    <span class="attr">base:</span></span><br><span class="line">    <span class="attr">async:</span></span><br><span class="line">    <span class="attr">defer:</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改-loading-效果"><a href="#修改-loading-效果" class="headerlink" title="修改 loading 效果"></a>修改 loading 效果</h2><ol>
+<li><p>新建文件 <code>layout/preloader/page-preloader.ejs</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<p><code>添加其他样式时须将元素写在 trm-holder 元素内</code></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-preloader&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-holder&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;loading&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span>,</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">font-size</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>: <span class="number">#afb42b</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-dark</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>: <span class="number">#afb42b</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">float</span>: none;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: currentColor;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">0</span> solid currentColor;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">25px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-radius</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation</span>: ball-running-dots-animate <span class="number">2s</span> linear infinite;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: <span class="number">0s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">0.4s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">0.8s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">1.2s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">5</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">1.6s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">6</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">7</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">2.4s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">8</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">2.8s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">9</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">3.2s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">10</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">3.6s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-sm</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">4px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">4px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-sm</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">4px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">4px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">12px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-2x</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-2x</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">50px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-3x</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-3x</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">75px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="keyword">@keyframes</span> ball-running-dots-animate &#123;</span></span><br><span class="line"><span class="language-css">    <span class="number">0%</span>,</span></span><br><span class="line"><span class="language-css">    <span class="number">100%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">0</span>) <span class="built_in">translateX</span>(<span class="number">500%</span>);</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="number">80%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">0</span>) <span class="built_in">translateX</span>(<span class="number">0</span>);</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="number">85%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">125%</span>) <span class="built_in">translateX</span>(<span class="number">0</span>);</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="number">90%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">200%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">75%</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="number">95%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">100%</span>) <span class="built_in">translateX</span>(<span class="number">500%</span>);</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">layout:</span></span><br><span class="line">  <span class="attr">page_loading:</span> <span class="string">async/preloader/page-preloader</span></span><br><span class="line">  <span class="comment"># 其他文件配置</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="更改-links-结构"><a href="#更改-links-结构" class="headerlink" title="更改 links 结构"></a>更改 links 结构</h2><ol>
+<li><p>新建文件 <code>layout/page/links.ejs</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;row trm-scroll-animation&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;margin-bottom: var(--card-bottom-card);&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-lg-12&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span></span><br><span class="line">      &lt;%-__(&#x27;site.ruleText&#x27;)%&gt;：</span><br><span class="line">      <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">      &lt;%- theme.user.ruleText %&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;% if(Array.isArray(theme.links))&#123; %&gt; &lt;% theme.links.forEach(item=&gt;&#123; %&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row trm-scroll-animation&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-lg-12&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;trm-title-with-divider&quot;</span>&gt;</span></span><br><span class="line">      &lt;%-__(&#x27;item.title&#x27;)%&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-number</span>=<span class="string">&quot;02&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% item.values.forEach(item=&gt;&#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-lg-6&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- item.url %&gt;&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;nofollow&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-service-icon-box trm-scroll-animation trm-p-20&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-service-content&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-icon&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">&quot;false&quot;</span> &lt;%<span class="attr">-</span> <span class="attr">onerror</span>(&#x27;<span class="attr">flink</span>&#x27;) %&gt;</span> alt=&quot;&lt;%- item.name</span><br><span class="line">            %&gt;&quot; src=&quot;&lt;%- item.image %&gt;&quot;&gt;</span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-service-text&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h6</span> <span class="attr">class</span>=<span class="string">&quot;trm-mb-10&quot;</span>&gt;</span>&lt;%- item.name %&gt;<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span>&lt;%- item.desc ? truncate(item.desc,&#123;length:32&#125;) : &#x27;&#x27; %&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;%&#125;)%&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&lt;%&#125;)%&gt; &lt;% &#125; %&gt; &lt;% if(page.comments) &#123; %&gt; &lt;%- partial(theme.layout.comment) %&gt; &lt;%</span><br><span class="line">&#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">layout:</span></span><br><span class="line">  <span class="attr">page_links:</span> <span class="string">async/page/links</span></span><br><span class="line">  <span class="comment"># 其他文件配置</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>_data&#x2F;links.yml 配置写法</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># @format</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">title:</span> <span class="string">博客框架</span></span><br><span class="line">  <span class="attr">values:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Hexo</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">https://hexo.io/zh-tw/</span></span><br><span class="line">      <span class="attr">image:</span> <span class="string">https://hexo.io/logo.svg</span></span><br><span class="line">      <span class="attr">desc:</span> <span class="string">快速、簡單且強大的網誌框架</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="attr">title:</span> <span class="string">博客主题</span></span><br><span class="line">  <span class="attr">values:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Hexo-Theme-Async</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">https://hexo-theme-async.imalun.com/</span></span><br><span class="line">      <span class="attr">image:</span> <span class="string">https://hexo-theme-async.imalun.com/logo.svg</span></span><br><span class="line">      <span class="attr">desc:</span> <span class="string">简洁、优雅、轻量、美观的用户界面。</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>blog</category>
+      </categories>
+  </entry>
+</search>
