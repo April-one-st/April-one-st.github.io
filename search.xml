@@ -327,30 +327,6 @@
       </categories>
   </entry>
   <entry>
-    <title>2621. 睡眠函数</title>
-    <url>/2024/03/04/leet-code-2621/</url>
-    <content><![CDATA[<!-- @format -->
-
-<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
-<p>请你编写一个异步函数，它接收一个正整数参数 millis ，并休眠 millis 毫秒。要求此函数可以解析任何值。</p>
-<blockquote>
-<p>示例 1:<br>输入: millis &#x3D; 100 <br>输出: 100 <br> 解释：<br>在 100ms 后此异步函数执行完时返回一个 Promise 对象<br>let t &#x3D; Date.now();<br>sleep(100).then(() &#x3D;&gt; {<br>&nbsp; &nbsp;console.log(Date.now() - t); &#x2F;&#x2F; 100<br>});&#96;</p>
-</blockquote>
-<blockquote>
-<p>示例 2:<br>输入: millis &#x3D; 200<br>输出: 200 <br> 解释： 在 200ms 后函数执行完时返回一个 Promise 对象</p>
-</blockquote>
-</blockquote>
-<p>提示:</p>
-<ul>
-<li>1 &lt;&#x3D; millis &lt;&#x3D; 1000</li>
-</ul>
-<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">millis</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">Promise</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">sleep</span>(<span class="params">millis</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">resolve</span>();</span><br><span class="line">    &#125;, millis);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * let t = Date.now()</span></span><br><span class="line"><span class="comment"> * sleep(100).then(() =&gt; console.log(Date.now() - t)) // 100</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetCode</category>
-      </categories>
-  </entry>
-  <entry>
     <title>2620. 计数器</title>
     <url>/2024/02/27/leet-code-2620/</url>
     <content><![CDATA[<!-- @format -->
@@ -376,6 +352,30 @@
 <li>利用闭包的原理</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">n</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">Function</span>&#125; <span class="variable">counter</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> createCounter = <span class="keyword">function</span> (<span class="params">n</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> n++;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetCode</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>2621. 睡眠函数</title>
+    <url>/2024/03/04/leet-code-2621/</url>
+    <content><![CDATA[<!-- @format -->
+
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>请你编写一个异步函数，它接收一个正整数参数 millis ，并休眠 millis 毫秒。要求此函数可以解析任何值。</p>
+<blockquote>
+<p>示例 1:<br>输入: millis &#x3D; 100 <br>输出: 100 <br> 解释：<br>在 100ms 后此异步函数执行完时返回一个 Promise 对象<br>let t &#x3D; Date.now();<br>sleep(100).then(() &#x3D;&gt; {<br>&nbsp; &nbsp;console.log(Date.now() - t); &#x2F;&#x2F; 100<br>});&#96;</p>
+</blockquote>
+<blockquote>
+<p>示例 2:<br>输入: millis &#x3D; 200<br>输出: 200 <br> 解释： 在 200ms 后函数执行完时返回一个 Promise 对象</p>
+</blockquote>
+</blockquote>
+<p>提示:</p>
+<ul>
+<li>1 &lt;&#x3D; millis &lt;&#x3D; 1000</li>
+</ul>
+<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; <span class="variable">millis</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">Promise</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">sleep</span>(<span class="params">millis</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">resolve</span>();</span><br><span class="line">    &#125;, millis);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * let t = Date.now()</span></span><br><span class="line"><span class="comment"> * sleep(100).then(() =&gt; console.log(Date.now() - t)) // 100</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>leetCode</category>
