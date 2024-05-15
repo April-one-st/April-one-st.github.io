@@ -31,6 +31,6 @@
     "hexo-theme-landscape": "^1.0.0",
     "hexo-util": "^3.2.0",
     "hexo-wordcount": "^6.0.1",
-    "picocolors": "^1.0.0"
+    "picocolors": "^1.0.1"
   }
 }
