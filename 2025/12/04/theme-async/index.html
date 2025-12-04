@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="修改主题色 创建文件 _data&#x2F;style&#x2F;index.less  添加代码   123456789101112131415161718192021&#x2F;&#x2F; 可以自己在 var-primary 方法里添加变量，去更改颜色.var-primary(@primary: #afb42b; @primary-bg: #fcfcfe; @primary-bg2: #f4f5f7; @primary-fix">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo-theme-async 魔改教程">
+<meta property="og:url" content="https://april-one-st.github.io/2025/12/04/theme-async/index.html">
+<meta property="og:site_name" content="菜菜の小屋">
+<meta property="og:description" content="修改主题色 创建文件 _data&#x2F;style&#x2F;index.less  添加代码   123456789101112131415161718192021&#x2F;&#x2F; 可以自己在 var-primary 方法里添加变量，去更改颜色.var-primary(@primary: #afb42b; @primary-bg: #fcfcfe; @primary-bg2: #f4f5f7; @primary-fix">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-12-04T15:41:26.177Z">
+<meta property="article:modified_time" content="2025-12-04T15:50:11.606Z">
+<meta property="article:author" content="菜菜">
+<meta name="twitter:card" content="summary">
+
+    <meta name="keywords" content="blog hexo">
+
+
+<title >hexo-theme-async 魔改教程</title>
+
+<!-- Favicon -->
+
+    <link href='/img/avatar.jpeg?v=2.2.6' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/img/avatar.jpeg?v=2.2.6' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=2.2.6' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="/css/plugins/font-awesome.min.css">
+
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"april-one-st.github.io","author":"菜菜","root":"/","typed_text":["若结局非你所愿，那就在尘埃落定前奋力一搏"],"theme_version":"2.2.6","theme":{"switch":true,"default":"auto"},"favicon":{"logo":false,"icon16":"/img/avatar.jpeg","icon32":"/img/avatar.jpeg","apple_touch_icon":null,"webmanifest":"/site.webmanifest","visibilitychange":false,"hidden":false,"show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！","dark_logo":false,"appleTouchIcon":"apple-touch-icon.png","showText":null,"hideText":null},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":true,"plugin":{"flickr_justified_gallery":"https://unpkg.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"far fa-sun","moon":"far fa-moon","play":"fas fa-play","email":"far fa-envelope","next":"fas fa-arrow-right","calendar":"far fa-calendar-alt","clock":"far fa-clock","user":"far fa-user","back_top":"fas fa-arrow-up","close":"fas fa-times","search":"fas fa-search","reward":"fas fa-hand-holding-usd","toc_tag":"fas fa-th-list","read":"fas fa-book-reader","arrows":"fas fa-arrows-alt-h","double_arrows":"fas fa-angle-double-down","copy":"fas fa-copy","user_tag":"fas fa-user-alt"},"icontype":"font","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"mac","height_limit":200},"toc":{"post_title":false},"live_time":{"start_time":"01/20/2024 00:00:00","prefix":"博客已萌萌哒运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"},"notice_outdate":{"enable":true,"style":"flat","limit_day":365,"position":"top"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-12-04 23:50:11"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=2.2.6" id="trm-switch-style">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+
+<!-- Site Analytics -->
+
+ 
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="loading">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<style>
+    .loading,
+    .loading > div {
+      position: relative;
+      box-sizing: border-box;
+    }
+    
+    .loading {
+      display: block;
+      font-size: 0;
+      color: #afb42b;
+    }
+    
+    .loading.la-dark {
+      color: #afb42b;
+    }
+    
+    .loading > div {
+      display: inline-block;
+      float: none;
+      background-color: currentColor;
+      border: 0 solid currentColor;
+    }
+    
+    .loading {
+      width: 10px;
+      height: 10px;
+    }
+    
+    .loading > div {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      margin-left: -25px;
+      border-radius: 100%;
+      animation: ball-running-dots-animate 2s linear infinite;
+    }
+    
+    .loading > div:nth-child(1) {
+      animation-delay: 0s;
+    }
+    
+    .loading > div:nth-child(2) {
+      animation-delay: -0.4s;
+    }
+    
+    .loading > div:nth-child(3) {
+      animation-delay: -0.8s;
+    }
+    
+    .loading > div:nth-child(4) {
+      animation-delay: -1.2s;
+    }
+    
+    .loading > div:nth-child(5) {
+      animation-delay: -1.6s;
+    }
+    
+    .loading > div:nth-child(6) {
+      animation-delay: -2s;
+    }
+    
+    .loading > div:nth-child(7) {
+      animation-delay: -2.4s;
+    }
+    
+    .loading > div:nth-child(8) {
+      animation-delay: -2.8s;
+    }
+    
+    .loading > div:nth-child(9) {
+      animation-delay: -3.2s;
+    }
+    
+    .loading > div:nth-child(10) {
+      animation-delay: -3.6s;
+    }
+    
+    .loading.la-sm {
+      width: 4px;
+      height: 4px;
+    }
+    
+    .loading.la-sm > div {
+      width: 4px;
+      height: 4px;
+      margin-left: -12px;
+    }
+    
+    .loading.la-2x {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .loading.la-2x > div {
+      width: 20px;
+      height: 20px;
+      margin-left: -50px;
+    }
+    
+    .loading.la-3x {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .loading.la-3x > div {
+      width: 30px;
+      height: 30px;
+      margin-left: -75px;
+    }
+    
+    @keyframes ball-running-dots-animate {
+      0%,
+      100% {
+        width: 100%;
+        height: 100%;
+        transform: translateY(0) translateX(500%);
+      }
+    
+      80% {
+        transform: translateY(0) translateX(0);
+      }
+    
+      85% {
+        width: 100%;
+        height: 100%;
+        transform: translateY(-125%) translateX(0);
+      }
+    
+      90% {
+        width: 200%;
+        height: 75%;
+      }
+    
+      95% {
+        width: 100%;
+        height: 100%;
+        transform: translateY(-100%) translateX(500%);
+      }
+    }
+    </style>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><i class="iconfont far fa-sun"></i></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><i class="iconfont far fa-moon"></i></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+    
+        <div class="trm-logo-text">
+            菜菜の小屋<span></span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    Home
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/archives" target="">
+                    Archives
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/links" target="">
+                    Links
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <i class="iconfont far fa-sun"></i>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <i class="iconfont far fa-moon"></i>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="/img/05.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            hexo-theme-async 魔改教程
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2025
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="/img/avatar.jpeg">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        菜菜
+    </h5>
+    
+        <div class="trm-label">
+            《夏目友人帐》
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com/April-one-st" title="github" rel="nofollow" target="_blank">
+            <i class="iconfont fab fa-github"></i>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                City:
+            </div>
+            <div class="trm-label trm-label-light">
+                ShangHai
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                Age:
+            </div>
+            <div class="trm-label trm-label-light">
+                25
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:zyh_153697@163.com" class="trm-btn">
+            联系我
+            <i class="iconfont far fa-envelope"></i>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-calendar-alt trm-icon"></i><br>
+            12/04
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-clock trm-icon"></i><br>
+            23:41
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <i class="iconfont far fa-user trm-icon"></i><br>
+            菜菜
+        </div>
+    </div>
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <!-- @format -->
+
+<h2 id="修改主题色"><a href="#修改主题色" class="headerlink" title="修改主题色"></a>修改主题色</h2><ol>
+<li><p>创建文件 <code>_data/style/index.less</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 可以自己在 var-primary 方法里添加变量，去更改颜色</span></span><br><span class="line"><span class="selector-class">.var-primary</span>(<span class="variable">@primary</span>: <span class="number">#afb42b</span>; <span class="variable">@primary-bg</span>: <span class="number">#fcfcfe</span>; <span class="variable">@primary-bg2</span>: <span class="number">#f4f5f7</span>; <span class="variable">@primary-fixed-button</span>: <span class="number">#ffffff</span>; <span class="variable">@primary-weak</span>: <span class="number">#c0ca33</span>) &#123;</span><br><span class="line">  <span class="attr">--primary</span>: @primary;</span><br><span class="line">  <span class="attr">--primary-70</span>: fade(@primary, 70%);</span><br><span class="line">  <span class="attr">--primary-50</span>: fade(@primary, 50%);</span><br><span class="line">  <span class="attr">--primary-30</span>: fade(@primary, 30%);</span><br><span class="line">  <span class="attr">--primary-weak</span>: @primary-weak;</span><br><span class="line">  <span class="attr">--primary-weak-50</span>: fade(@primary-weak, 50%);</span><br><span class="line">  <span class="attr">--theme-bg-color</span>: @primary-bg; <span class="comment">// 主题背景色</span></span><br><span class="line">  <span class="attr">--theme-bg2-color</span>: @primary-bg2; <span class="comment">// 主题背景色2</span></span><br><span class="line">  <span class="attr">--fixed-button-bg-color</span>: @primary-fixed-button; <span class="comment">// 侧边栏按钮颜色</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 亮色主题色</span></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="selector-class">.var-primary</span>(<span class="number">#afb42b</span>);</span><br><span class="line">  <span class="comment">// 暗色主题色</span></span><br><span class="line">  <span class="selector-tag">&amp;</span><span class="selector-class">.dark</span> &#123;</span><br><span class="line">    <span class="selector-class">.var-primary</span>(<span class="number">#b2cf87</span>,<span class="number">#1f2623</span>,<span class="number">#141e1b</span>, <span class="number">#2b312c</span> );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="搜索移动到侧栏按钮"><a href="#搜索移动到侧栏按钮" class="headerlink" title="搜索移动到侧栏按钮"></a>搜索移动到侧栏按钮</h2><ol>
+<li><p>新建文件 <code>layout/fixed-btn.ejs</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;% let is_toc = is_post() &amp;&amp; (theme.toc.enable &amp;&amp; page.toc !== false ) let</span><br><span class="line">toc_content = &#x27;&#x27;; if(is_toc)&#123; toc_content = toc(page.content, &#123;list_number:</span><br><span class="line">theme.toc.list_number, max_depth: theme.toc.max_depth, min_depth:</span><br><span class="line">theme.toc.min_depth&#125;); is_toc = is_toc &amp;&amp; toc_content.length &gt; 1; &#125; %&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-fixed-container&quot;</span>&gt;</span></span><br><span class="line">  &lt;% if(theme.search.enable)&#123; %&gt; &lt;% if(theme.search.type === &#x27;local&#x27;)&#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">&quot;trm-search-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot; trm-fixed-btn trm-search-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.search&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.search) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% &#125;%&gt; &lt;% &#125; %&gt; &lt;% if(is_toc) &#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot;trm-fixed-btn post-toc-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.toc_title&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.toc_tag) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% &#125; %&gt; &lt;% if(is_post() &amp;&amp; theme.rightside.readmode) &#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot;trm-fixed-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.readmode_title&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">onclick</span>=<span class="string">&quot;asyncFun.switchReadMode()&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.read) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% &#125; %&gt; &lt;% if(theme.rightside.aside &amp;&amp; !page.single_column) &#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot;trm-fixed-btn hidden-md&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.aside&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">onclick</span>=<span class="string">&quot;asyncFun.switchSingleColumn()&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.arrows) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">&quot;trm-back-top&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">&quot;trm-fixed-btn&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">data-title</span>=<span class="string">&quot;&lt;%- __(&#x27;rightside.back_to_top&#x27;) %&gt;&quot;</span></span></span><br><span class="line"><span class="tag">  &gt;</span></span><br><span class="line">    &lt;%- icon(theme.icons.back_top) %&gt;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>_config.async.yml 添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">layout:</span></span><br><span class="line">  <span class="attr">fixed_btn:</span> <span class="string">async/fixed-btn</span></span><br><span class="line">  <span class="comment"># 其他文件配置</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="添加-gitalk-评论功能"><a href="#添加-gitalk-评论功能" class="headerlink" title="添加 gitalk 评论功能"></a>添加 gitalk 评论功能</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/gitalk/gitalk/blob/master/readme-cn.md">申请 gitalk</a></p>
+</li>
+<li><p>新建文件 <code>layout/comment/index.ejs</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 评论渲染的位置 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-card trm-scroll-animation comment-container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;gitalk-container&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 引入cdn资源 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">data-swup-reload-script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> gitalk = <span class="keyword">new</span> <span class="title class_">Gitalk</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">clientID</span>: <span class="string">&quot;4850f2013499cd6d90b4&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">clientSecret</span>: <span class="string">&quot;577bf49bdbe8cfe2c12b6f8931815d775039ae90&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">repo</span>: <span class="string">&quot;April-one-st.github.io&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">owner</span>: <span class="string">&quot;April-one-st&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">admin</span>: [<span class="string">&quot;April-one-st&quot;</span>],</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">id</span>: location.<span class="property">pathname</span>, <span class="comment">// Ensure uniqueness and length less than 50</span></span></span><br><span class="line"><span class="language-javascript">      <span class="attr">distractionFreeMode</span>: <span class="literal">false</span>, <span class="comment">// Facebook-like distraction free mode</span></span></span><br><span class="line"><span class="language-javascript">      <span class="attr">pagerDirection</span>: <span class="string">&quot;last&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">      <span class="attr">language</span>: <span class="string">&quot;zh-CN&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript">    gitalk.<span class="title function_">render</span>(<span class="string">&quot;gitalk-container&quot;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;)();</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>_config.async.yml 添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">layout:</span></span><br><span class="line">  <span class="attr">comment:</span> <span class="string">async/comment/index</span></span><br><span class="line">  <span class="comment"># 其他文件配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加cdn资源加载</span></span><br><span class="line"><span class="attr">cdn:</span></span><br><span class="line">  <span class="attr">css:</span> [<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css&quot;</span>]</span><br><span class="line">  <span class="attr">js:</span></span><br><span class="line">    <span class="attr">head:</span> [<span class="string">&quot;https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js&quot;</span>]</span><br><span class="line">    <span class="attr">base:</span></span><br><span class="line">    <span class="attr">async:</span></span><br><span class="line">    <span class="attr">defer:</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改-loading-效果"><a href="#修改-loading-效果" class="headerlink" title="修改 loading 效果"></a>修改 loading 效果</h2><ol>
+<li><p>新建文件 <code>layout/preloader/page-preloader.ejs</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<p><code>添加其他样式时须将元素写在 trm-holder 元素内</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-preloader&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-holder&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;loading&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span>,</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">box-sizing</span>: border-box;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">font-size</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>: <span class="number">#afb42b</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-dark</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">color</span>: <span class="number">#afb42b</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: inline-block;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">float</span>: none;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background-color</span>: currentColor;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">0</span> solid currentColor;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">25px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-radius</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation</span>: ball-running-dots-animate <span class="number">2s</span> linear infinite;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: <span class="number">0s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">2</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">0.4s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">3</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">0.8s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">4</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">1.2s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">5</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">1.6s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">6</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">2s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">7</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">2.4s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">8</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">2.8s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">9</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">3.2s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span> &gt; <span class="selector-tag">div</span><span class="selector-pseudo">:nth-child</span>(<span class="number">10</span>) &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">animation-delay</span>: -<span class="number">3.6s</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-sm</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">4px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">4px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-sm</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">4px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">4px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">12px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-2x</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-2x</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">50px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-3x</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.loading</span><span class="selector-class">.la-3x</span> &gt; <span class="selector-tag">div</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">30px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-left</span>: -<span class="number">75px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="keyword">@keyframes</span> ball-running-dots-animate &#123;</span></span><br><span class="line"><span class="language-css">    <span class="number">0%</span>,</span></span><br><span class="line"><span class="language-css">    <span class="number">100%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">0</span>) <span class="built_in">translateX</span>(<span class="number">500%</span>);</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="number">80%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">0</span>) <span class="built_in">translateX</span>(<span class="number">0</span>);</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="number">85%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">125%</span>) <span class="built_in">translateX</span>(<span class="number">0</span>);</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="number">90%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">200%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">75%</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="number">95%</span> &#123;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">      <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">100%</span>) <span class="built_in">translateX</span>(<span class="number">500%</span>);</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">layout:</span></span><br><span class="line">  <span class="attr">page_loading:</span> <span class="string">async/preloader/page-preloader</span></span><br><span class="line">  <span class="comment"># 其他文件配置</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="更改-links-结构"><a href="#更改-links-结构" class="headerlink" title="更改 links 结构"></a>更改 links 结构</h2><ol>
+<li><p>新建文件 <code>layout/page/links.ejs</code></p>
+</li>
+<li><p>添加代码</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;row trm-scroll-animation&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&quot;margin-bottom: var(--card-bottom-card);&quot;</span></span></span><br><span class="line"><span class="tag">&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-lg-12&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span></span><br><span class="line">      &lt;%-__(&#x27;site.ruleText&#x27;)%&gt;：</span><br><span class="line">      <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">      &lt;%- theme.user.ruleText %&gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;% if(Array.isArray(theme.links))&#123; %&gt; &lt;% theme.links.forEach(item=&gt;&#123; %&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row trm-scroll-animation&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-lg-12&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h5</span> <span class="attr">class</span>=<span class="string">&quot;trm-title-with-divider&quot;</span>&gt;</span></span><br><span class="line">      &lt;%-__(&#x27;item.title&#x27;)%&gt;</span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-number</span>=<span class="string">&quot;02&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">h5</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;% item.values.forEach(item=&gt;&#123; %&gt;</span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-lg-6&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%- item.url %&gt;&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span> <span class="attr">rel</span>=<span class="string">&quot;nofollow&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-service-icon-box trm-scroll-animation trm-p-20&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-service-content&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-icon&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">img</span> <span class="attr">draggable</span>=<span class="string">&quot;false&quot;</span> &lt;%<span class="attr">-</span> <span class="attr">onerror</span>(&#x27;<span class="attr">flink</span>&#x27;) %&gt;</span> alt=&quot;&lt;%- item.name</span><br><span class="line">            %&gt;&quot; src=&quot;&lt;%- item.image %&gt;&quot;&gt;</span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;trm-service-text&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h6</span> <span class="attr">class</span>=<span class="string">&quot;trm-mb-10&quot;</span>&gt;</span>&lt;%- item.name %&gt;<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span>&lt;%- item.desc ? truncate(item.desc,&#123;length:32&#125;) : &#x27;&#x27; %&gt;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  &lt;%&#125;)%&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&lt;%&#125;)%&gt; &lt;% &#125; %&gt; &lt;% if(page.comments) &#123; %&gt; &lt;%- partial(theme.layout.comment) %&gt; &lt;%</span><br><span class="line">&#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>添加配置</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">layout:</span></span><br><span class="line">  <span class="attr">page_links:</span> <span class="string">async/page/links</span></span><br><span class="line">  <span class="comment"># 其他文件配置</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>_data&#x2F;links.yml 配置写法</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @format</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">title:</span> <span class="string">博客框架</span></span><br><span class="line">  <span class="attr">values:</span></span><br><span class="line">   <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Hexo</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">https://hexo.io/zh-tw/</span></span><br><span class="line">      <span class="attr">image:</span> <span class="string">https://hexo.io/logo.svg</span></span><br><span class="line">      <span class="attr">desc:</span> <span class="string">快速、簡單且強大的網誌框架</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="attr">title:</span> <span class="string">博客主题</span></span><br><span class="line">  <span class="attr">values:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Hexo-Theme-Async</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">https://hexo-theme-async.imalun.com/</span></span><br><span class="line">      <span class="attr">image:</span> <span class="string">https://hexo-theme-async.imalun.com/logo.svg</span></span><br><span class="line">      <span class="attr">desc:</span> <span class="string">简洁、优雅、轻量、美观的用户界面。</span></span><br></pre></td></tr></table></figure>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2025/12/04/mark-down-stuly/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/10.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/Markdown/">
+                    Markdown
+                </a>
+            </div>
+            <h5>
+                <a href="/2025/12/04/mark-down-stuly/" class="trm-anima-link">
+                    Markdown 语法学习 （基本语法）
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>25/12/04</li>
+                <li>23:41</li>
+                
+                    <li>1k</li>
+                
+                
+                    <li>5</li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-blog-card trm-scroll-animation">
+        <a href="/2025/12/04/hexo-butterfly-style1/" class="trm-cover-frame trm-anima-link">
+            
+            
+                <img alt="cover" class="no-fancybox" src="/img/03.png">
+            
+        </a>
+        
+        <div class="trm-card-descr">
+            <div class="trm-label trm-category trm-mb-20">
+                <a href=" /categories/blog/">
+                    blog
+                </a>
+            </div>
+            <h5>
+                <a href="/2025/12/04/hexo-butterfly-style1/" class="trm-anima-link">
+                    butterfly 魔改教程
+                </a>
+            </h5>
+            <div class="trm-divider trm-mb-20 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>25/12/04</li>
+                <li>23:41</li>
+                
+                    <li>521</li>
+                
+                
+                    <li>2</li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    <div class="trm-card trm-scroll-animation comment-container">
+    <div id="gitalk-container"></div>
+</div>
+<script data-swup-reload-script>
+    (function () {
+        var gitalk = new Gitalk({
+            clientID: '4850f2013499cd6d90b4',
+            clientSecret: '577bf49bdbe8cfe2c12b6f8931815d775039ae90',
+            repo: 'April-one-st.github.io',
+            owner: 'April-one-st',
+            admin: ['April-one-st'],
+            id: location.pathname,      // Ensure uniqueness and length less than 50
+            distractionFreeMode: false,  // Facebook-like distraction free mode
+            pagerDirection: 'last',
+            language: 'zh-CN'
+            })
+            gitalk.render('gitalk-container')
+    })()
+</script>
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2024 - 2025</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">菜菜</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v2.2.6
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item blog-run-long"></div>
+     
+
+     
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+    <div id="post-toc" class="trm-post-toc">
+      <div class="trm-post-toc-header">
+        目录导航
+				<span id="post-toc-top">
+					置顶
+				</span>
+      </div>
+      <div class="trm-post-toc-content">
+        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-2" title="修改主题色"><a rel="nofollow" class="trm-toc-link" href="#修改主题色"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">修改主题色</span></a></li><li class="trm-toc-item trm-toc-level-2" title="搜索移动到侧栏按钮"><a rel="nofollow" class="trm-toc-link" href="#搜索移动到侧栏按钮"><span class="trm-toc-number">2.</span> <span class="trm-toc-text">搜索移动到侧栏按钮</span></a></li><li class="trm-toc-item trm-toc-level-2" title="添加 gitalk 评论功能"><a rel="nofollow" class="trm-toc-link" href="#添加-gitalk-评论功能"><span class="trm-toc-number">3.</span> <span class="trm-toc-text">添加 gitalk 评论功能</span></a></li><li class="trm-toc-item trm-toc-level-2" title="修改 loading 效果"><a rel="nofollow" class="trm-toc-link" href="#修改-loading-效果"><span class="trm-toc-number">4.</span> <span class="trm-toc-text">修改 loading 效果</span></a></li><li class="trm-toc-item trm-toc-level-2" title="更改 links 结构"><a rel="nofollow" class="trm-toc-link" href="#更改-links-结构"><span class="trm-toc-number">5.</span> <span class="trm-toc-text">更改 links 结构</span></a></li></ol>
+      </div>
+    </div>
+
+            
+<div class="trm-fixed-container">
+    
+    
+        <div class="trm-fixed-btn post-toc-btn" data-title="目录">
+            <i class="iconfont fas fa-th-list"></i>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <i class="iconfont fas fa-book-reader"></i>
+        </div>
+    
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <i class="iconfont fas fa-arrow-up"></i>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+  <!-- Plugin -->
+
+
+
+
+    
+<script src="https://unpkg.com/swup@2.0.19/dist/swup.min.js"></script>
+
+    
+<script src="https://unpkg.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=2.2.6"></script>
+    
+
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+    
+
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+    <script data-swup-reload-script>
+        (function () {
+            var bp = document.createElement('script');
+            var curProtocol = window.location.protocol.split(':')[0];
+            if (curProtocol === 'https') {
+                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+            }
+            else {
+                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+            }
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(bp, s);
+        })();
+    </script>
+
+
+
+<script id="async-script" src="/js/main.js?v=2.2.6"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>
