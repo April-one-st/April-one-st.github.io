@@ -9,8 +9,8 @@ theme:
 favicon:
   logo: false
   dark_logo: false
-  icon16: /img/avatar.jpg
-  icon32: /img/avatar.jpg
+  icon16: /img/avatar.jpeg
+  icon32: /img/avatar.jpeg
   appleTouchIcon: apple-touch-icon.png
   webmanifest: /site.webmanifest
   visibilitychange: false
@@ -21,12 +21,12 @@ favicon:
 # @format
 # 作者信息
 user:
-  name: April
+  name: 菜菜
   first_name:
-  last_name: April
+  last_name: 菜菜の小屋
   email: zyh_153697@163.com
   domain: https://april-one-st.github.io/
-  avatar: /img/avatar.jpg
+  avatar: /img/avatar.jpeg
   describe: 网站简介
   ruleText: 一直往前看，未来会变得更加明亮的。
 
@@ -64,13 +64,13 @@ sidebar:
 banner:
   index:
     use_cover: true
-    type: video
-    bgurl: /img/banner.mp4
+    type: img
+    bgurl: /img/bananer.jpg
     bannerTitle: 愿神明偏爱，一切从欢
     bannerText: Hello!
   archive:
-    type: video
-    bgurl: /img/archives.mp4
+    type: img
+    bgurl: /img/active.jpg
     bannerTitle: Archive
     bannerText: 归档
 # 页脚

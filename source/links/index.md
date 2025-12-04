@@ -5,7 +5,7 @@ type: "link"
 layout: links
 banner:
   type: img
-  bgurl: /img/links.png
+  bgurl: /img/link.jpg
   bannerTitle: Links
   bannerText: 友链
 ---
